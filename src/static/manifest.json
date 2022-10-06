@@ -21,6 +21,10 @@
       "js": ["contentScript.js"]
     }
   ],
+  "chrome_url_overrides": {
+    "newtab": "newTab.html"
+  },
   "options_page": "options.html",
-  "permissions": ["tabs", "bookmarks"]
+  "permissions": ["tabs", "bookmarks", "storage", "identity"],
+  "host_permissions": ["*://*/*"]
 }
