@@ -4,7 +4,11 @@ const HtmlPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: { popup: "./src/popup/popup.tsx" },
+  entry: {
+    popup: path.resolve("src/popup/popup.tsx"),
+    // background: path.resolve("src/background/background.tsx"),
+  },
+  devtool: "cheap-module-source-map",
   module: {
     rules: [
       {
@@ -26,12 +30,13 @@ module.exports = {
     new HtmlPlugin({
       title: "React Extension",
       filename: "popup.html",
+      chunks: ["popup"],
     }),
   ],
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
   output: {
-    filename: "index.js",
+    filename: "[name].js",
   },
 };

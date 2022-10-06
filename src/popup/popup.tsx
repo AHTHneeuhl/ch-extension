@@ -1,4 +1,10 @@
 import React from "react";
+import { createRoot } from "react-dom/client";
 
-const test = <h1>Hello, Webpack!</h1>;
-const message = <h2>Hello, There!</h2>;
+const App = () => {
+  return <h1>Hello React Webpack Extension</h1>;
+};
+
+const container = document.createElement("div");
+document.body.appendChild(container);
+createRoot(container).render(<App />);
