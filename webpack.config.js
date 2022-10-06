@@ -8,7 +8,7 @@ module.exports = {
   mode: "development",
   entry: {
     popup: path.resolve("src/popup/popup.tsx"),
-    // background: path.resolve("src/background/background.tsx"),
+    options: path.resolve("src/options/options.tsx"),
   },
   devtool: "cheap-module-source-map",
   module: {
@@ -34,6 +34,11 @@ module.exports = {
         ],
         test: /\.css$/i,
       },
+      {
+        use: "asset/resource",
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
     ],
   },
   plugins: [
@@ -45,12 +50,11 @@ module.exports = {
         },
       ],
     }),
-    new HtmlPlugin({
-      title: "React Extension",
-      filename: "popup.html",
-      chunks: ["popup"],
-    }),
+    ...getHtmlPlugins(["popup", "options"]),
   ],
+  optimization: {
+    splitChunks: { chunks: "all" },
+  },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
@@ -58,3 +62,14 @@ module.exports = {
     filename: "[name].js",
   },
 };
+
+function getHtmlPlugins(chunks) {
+  return chunks.map(
+    (chunk) =>
+      new HtmlPlugin({
+        title: "extension",
+        filename: `${chunk}.html`,
+        chunks: [chunk],
+      })
+  );
+}
