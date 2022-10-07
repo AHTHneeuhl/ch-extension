@@ -1,1 +1,1 @@
-{"version":3,"file":"contentScript.js","mappings":"AAAA","sources":["webpack://extension/./src/contentScript/contentScript.ts"],"sourcesContent":["window.onload = () => {\n  console.log(\"contentScript\");\n};\n"],"names":[],"sourceRoot":""}
+{"version":3,"file":"contentScript.js","mappings":";;;;;AAAA;AACA;AACA","sources":["webpack://extension/./src/contentScript/contentScript.ts"],"sourcesContent":["window.onload = () => {\n  console.log(\"contentScript\");\n};\n"],"names":[],"sourceRoot":""}
