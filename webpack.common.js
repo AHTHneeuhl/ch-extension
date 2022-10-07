@@ -10,7 +10,7 @@ module.exports = {
     popup: path.resolve("src/popup/index.tsx"),
     options: path.resolve("src/options/options.tsx"),
     background: path.resolve("src/background/background.ts"),
-    contentScript: path.resolve("src/contentScript/contentScript.ts"),
+    contentScript: path.resolve("src/contentScript/index.tsx"),
     newTab: path.resolve("src/newTab/index.tsx"),
   },
   devtool: "cheap-module-source-map",
@@ -56,7 +56,11 @@ module.exports = {
     ...getHtmlPlugins(["popup", "options", "newTab"]),
   ],
   optimization: {
-    splitChunks: { chunks: "all" },
+    splitChunks: {
+      chunks(chunk) {
+        return chunk.name !== "contentScript";
+      },
+    },
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
