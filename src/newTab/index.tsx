@@ -1,5 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 
 function init() {
@@ -8,7 +9,11 @@ function init() {
   if (!appContainer) {
     throw new Error("Can not find AppContainer");
   }
-  createRoot(appContainer).render(<App />);
+  createRoot(appContainer).render(
+    <Router>
+      <App />
+    </Router>
+  );
 }
 
 init();
